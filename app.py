@@ -18,17 +18,15 @@ uploaded_file = st.file_uploader("Upload your admission documents (PDF, PNG, JPG
 # Button to Submit & Verify Documents
 if uploaded_file:
     st.success(f"✅ {uploaded_file.name} uploaded successfully!")
-    if st.button("Submit & Verify"):  # ✅ Added button to verify
+    if st.button("Submit & Verify"):
         st.info("⏳ Verifying your documents... Please wait.")
         
         # Simulate verification (Replace with AI logic)
         verification_result = "✅ Your documents have been successfully verified!"  
-        
-        # Display result
         st.success(verification_result)  
 
 # ------------------------------
-# 💬 Chatbot Section (Updated UI - Removed Emojis)
+# 💬 Chatbot Section
 # ------------------------------
 st.subheader("💬 AI Chatbot for Admission Queries")
 
@@ -36,7 +34,7 @@ st.subheader("💬 AI Chatbot for Admission Queries")
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "bot", "content": "Hi! How can I assist you with admissions?"}]
 
-# Display Chat Messages (Removed Emojis)
+# Display Chat Messages
 for msg in st.session_state.messages:
     if msg["role"] == "bot":
         with st.chat_message("assistant"):
