@@ -8,14 +8,14 @@ st.title("🎓 Automated Helpdesk Support for Student Admission")
 st.write("This system helps automate student admission queries, document verification, loan-related queries, and more.")
 
 # ------------------------------
-# 📄 Document Upload Section (Updated)
+# 📄 Document Upload Section
 # ------------------------------
 st.subheader("📄 Upload Documents for Verification")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload your admission documents (PDF, PNG, JPG)", type=["pdf", "png", "jpg"])
 
-# Button to Submit & Verify Documents
+# Button
 if uploaded_file:
     st.success(f"✅ {uploaded_file.name} uploaded successfully!")
     if st.button("Submit & Verify"):
