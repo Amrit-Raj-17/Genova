@@ -2,37 +2,18 @@ import streamlit as st
 
 # Page Config
 st.set_page_config(page_title="Student Admission Helpdesk", page_icon="🎓")
-st.title("🎓 Automated Helpdesk Support for Student Admission")
-
+st.markdown("### 🎓 Automated Helpdesk Support")
 # Introduction
-st.write("This system helps automate student admission queries, document verification, loan-related queries, and more.")
-
-# ------------------------------
-# 📄 Document Upload Section
-# ------------------------------
-st.subheader("📄 Upload Documents for Verification")
-
-# File uploader
-uploaded_file = st.file_uploader("Upload your admission documents (PDF, PNG, JPG)", type=["pdf", "png", "jpg"])
-
-# Button
-if uploaded_file:
-    st.success(f"✅ {uploaded_file.name} uploaded successfully!")
-    if st.button("Submit & Verify"):
-        st.info("⏳ Verifying your documents... Please wait.")
-        
-        # Simulate verification (Replace with AI logic)
-        verification_result = "✅ Your documents have been successfully verified!"  
-        st.success(verification_result)  
+st.write("This system helps in admission queries, document verification, loan-related queries, and more.")
 
 # ------------------------------
 # 💬 Chatbot Section
 # ------------------------------
-st.subheader("💬 AI Chatbot for Admission Queries")
+st.markdown("#### 💬 AI Chatbot for your queries")
 
 # Chatbot Session State
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "bot", "content": "Hi! How can I assist you with admissions?"}]
+    st.session_state.messages = [{"role": "bot", "content": "Hi! How can I assist you?"}]
 
 # Display Chat Messages
 for msg in st.session_state.messages:
@@ -43,8 +24,16 @@ for msg in st.session_state.messages:
         with st.chat_message("user"):
             st.write(msg["content"])
 
-# User Input
-user_input = st.chat_input("Type your query...")
+# Create two columns for input and upload button
+
+# Wrap the file uploader in a container div with style
+uploaded_file = st.file_uploader("📤", type=["pdf", "png", "jpg"], label_visibility="collapsed", key="uploader_small")
+
+user_input = st.chat_input("Type your query...")  # Chat input field
+
+if uploaded_file:
+    # st.success(f"✅ {uploaded_file.name} uploaded successfully!")
+    st.session_state.messages.append({"role": "bot", "content": f"Your file '{uploaded_file.name}' has been uploaded and is being processed."})
 
 # AI Response Logic (Placeholder)
 def chatbot_response(user_query):
